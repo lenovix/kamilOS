@@ -1,5 +1,7 @@
 # kamilOS v0.0.1
 
+![v0.0.1](./img/v001.png)
+
 **kamilOS** adalah sistem operasi minimal buatan sendiri sebagai latihan eksplorasi sistem operasi dari nol menggunakan bahasa Assembly dan C, serta compiler cross-platform `i386-elf-gcc`.
 
 Versi 0.0.1 adalah rilis awal yang berfokus pada:
