@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kamilOS Wiki</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      line-height: 1.6;
+      margin: 40px;
+    }
+    h1, h2, h3 {
+      color: #58a6ff;
+    }
+    code {
+      background: #161b22;
+      padding: 3px 6px;
+      border-radius: 4px;
+      color: #79c0ff;
+    }
+    pre {
+      background: #161b22;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #30363d;
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 kamilOS Developer Wiki</h1>
+  <p>Dokumentasi resmi untuk fitur-fitur internal yang telah dikembangkan dalam <strong>kamilOS</strong>.</p>
+
+  <hr />
+
+  <div class="section">
+    <h2>1️⃣ Boot & Kernel Initialization</h2>
+    <p>
+      Fitur dasar sistem operasi yang memuat kernel ke memori dan memulai eksekusi
+      setelah bootloader.
+    </p>
+    <h3>File Terkait</h3>
+    <ul>
+      <li><code>boot.asm</code> — Bootloader, memuat kernel.</li>
+      <li><code>kernel.c</code> — Entry point utama.</li>
+    </ul>
+    <h3>Contoh Alur</h3>
+    <pre><code>Boot → Load kernel → Initialize screen → Show logs</code></pre>
+  </div>
+
+  <hr />
+
+  <div class="section">
+    <h2>2️⃣ Screen & Text Handling</h2>
+    <p>
+      Modul ini menangani tampilan teks ke layar menggunakan akses langsung ke
+      memori video (VGA text mode).
+    </p>
+
+    <h3>File Terkait</h3>
+    <ul>
+      <li><code>src/drivers/screen.c</code></li>
+      <li><code>src/include/screen.h</code></li>
+    </ul>
+
+    <h3>Fungsi Utama</h3>
+    <ul>
+      <li><code>void put_char(char c, uint8_t color)</code> — Menulis satu karakter di posisi kursor.</li>
+      <li><code>void print_string(const char *str, uint8_t color)</code> — Menampilkan teks berwarna.</li>
+      <li><code>void print_line(const char *prefix, const char *msg, uint8_t color)</code> — Menampilkan teks dengan awalan (seperti log).</li>
+      <li><code>void clear_screen()</code> — Menghapus seluruh tampilan layar.</li>
+    </ul>
+
+    <h3>Contoh Penggunaan</h3>
+    <pre><code>print_string("Hello, kamilOS!", WHITE_ON_BLACK);
+print_line("[SYSTEM]", "Screen initialized", GREEN_ON_BLACK);
+clear_screen();</code></pre>
+  </div>
+
+  <hr />
+
+  <div class="section">
+    <h2>3️⃣ Basic Logging</h2>
+    <p>
+      Sistem logging sederhana untuk menampilkan pesan dengan level tertentu
+      (INFO, WARN, ERROR, DEBUG) di layar.
+    </p>
+
+    <h3>File Terkait</h3>
+    <ul>
+      <li><code>src/kernel/log.c</code></li>
+      <li><code>src/include/log.h</code></li>
+    </ul>
+
+    <h3>Fungsi Utama</h3>
+    <ul>
+      <li><code>void log_info(const char *msg)</code> — Menampilkan pesan informasi.</li>
+      <li><code>void log_warn(const char *msg)</code> — Menampilkan pesan peringatan.</li>
+      <li><code>void log_error(const char *msg)</code> — Menampilkan pesan error.</li>
+      <li><code>void log_debug(const char *msg)</code> — Menampilkan pesan debug.</li>
+    </ul>
+
+    <h3>Contoh Penggunaan</h3>
+    <pre><code>log_info("Kernel started");
+log_warn("Low memory");
+log_error("Disk not found");
+log_debug("Entering test mode");</code></pre>
+
+    <h3>Output di Layar</h3>
+    <pre>
+[INFO] Kernel started
+[WARN] Low memory
+[ERROR] Disk not found
+[DEBUG] Entering test mode
+    </pre>
+  </div>
+
+  <hr />
+
+  <div class="section">
+    <h2>🧭 Struktur Folder</h2>
+    <pre><code>kamilOS/
+ ├─ boot.asm
+ ├─ kernel.c
+ ├─ Makefile
+ ├─ linker.ld
+ ├─ /src
+ │   ├─ /kernel
+ │   │   └─ log.c
+ │   ├─ /drivers
+ │   │   └─ screen.c
+ │   └─ /include
+ │       ├─ log.h
+ │       └─ screen.h
+ └─ /wiki
+     └─ index.html</code></pre>
+  </div>
+
+  <hr />
+
+  <footer>
+    <p><small>© 2025 kamilOS Project — Internal Developer Wiki</small></p>
+  </footer>
+</body>
+</html>
