@@ -1,4 +1,6 @@
+#include "../include/screen.h"
 #include "../include/log.h"
+#include "../include/colors.h"
 
 #define WHITE_ON_BLACK 0x07
 #define YELLOW_ON_BLACK 0x0E
@@ -22,7 +24,30 @@ static void print_line(const char *label, const char *msg, unsigned char color)
     cursor += 80 - (cursor % 80); // move to next line
 }
 
-void log_info(const char *msg) { print_line("[INFO]", msg, WHITE_ON_BLACK); }
-void log_warn(const char *msg) { print_line("[WARN]", msg, YELLOW_ON_BLACK); }
-void log_error(const char *msg) { print_line("[ERROR]", msg, RED_ON_BLACK); }
-void log_debug(const char *msg) { print_line("[DEBUG]", msg, CYAN_ON_BLACK); }
+void log_info(const char *msg)
+{
+    print_string("[INFO]  ", COLOR_LIGHT_GREEN);
+    print_string(msg, COLOR_WHITE);
+    put_char('\n', COLOR_WHITE);
+}
+
+void log_warn(const char *msg)
+{
+    print_string("[WARNING]  ", COLOR_YELLOW);
+    print_string(msg, COLOR_WHITE);
+    put_char('\n', COLOR_WHITE);
+}
+
+void log_error(const char *msg)
+{
+    print_string("[ERROR] ", COLOR_LIGHT_RED);
+    print_string(msg, COLOR_WHITE);
+    put_char('\n', COLOR_WHITE);
+}
+
+void log_debug(const char *msg)
+{
+    print_string("[DEBUG] ", COLOR_CYAN);
+    print_string(msg, COLOR_WHITE);
+    put_char('\n', COLOR_WHITE);
+}
