@@ -1,0 +1,32 @@
+Tahap 1 – Dasar Kernel
+Fokus: menambah fondasi minimal kernel.
+🧮 GDT (Global Descriptor Table)	Supaya CPU bisa mengatur memory segment di mode protected.	gdt.asm, gdt.c
+🧠 IDT (Interrupt Descriptor Table)	Untuk menangani interrupt & exception (misal division by zero).	idt.asm, isr.c
+🕹️ Keyboard Input (PS/2)	Supaya bisa mengetik di terminal kamu sendiri.	keyboard.c
+🧾 Simple Screen Driver (text mode)	Buat fungsi seperti print_char(), clear_screen().	screen.c
+🪵 Basic Logging	Output seperti [INFO], [ERROR].	log.c
+
+Tahap 2 – Manajemen Memori
+Kernel kamu butuh ini untuk mengelola RAM.
+📦 Paging	Virtual memory management (dari fisik ke virtual).
+🧱 Memory Allocator (kmalloc)	Untuk dynamic memory di kernel.
+🔍 Multiboot Memory Map Parsing	Supaya tahu total RAM yang tersedia.
+
+Tahap 3 – Sistem Dasar OS
+Ini membuat kamilOS terasa seperti sistem sungguhan.
+⏱️ Timer (PIT)	Agar bisa melakukan multitasking (scheduler nanti).
+👥 Tasking (Process switching)	Bisa menjalankan lebih dari satu proses (misalnya shell + clock).
+⌨️ Shell Sederhana	Ketik perintah di layar (help, clear, info).
+🧠 Syscall Interface	Agar program user bisa memanggil fungsi kernel.
+
+Tahap 4 – File System & Driver
+Membuat OS kamu bisa menyimpan dan membaca data.
+💾 FAT12/FAT32 Reader	Bisa baca file dari floppy/disk image.
+🧮 VFS (Virtual File System)	Abstraksi untuk semua file system.
+📄 Driver VGA Mode 13h	Tampilan grafis sederhana.
+
+Tahap 5 – Arah yang Bisa Kamu Pilih
+Setelah sistem dasar matang, kamu bisa memilih arah pengembangan:
+🔧 KamilOS (Educational Kernel) → seperti xv6, OSDev, Minix.
+💻 KamilShell (Text-based OS) → seperti DOS, bisa ketik perintah.
+🪟 KamilOS GUI Edition → gunakan VGA driver untuk tampilan grafis sederhana.
